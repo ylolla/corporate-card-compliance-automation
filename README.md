@@ -12,7 +12,7 @@ audit trail — turning a multi-day manual job into a ~15-minute run.
 
 ## Try it in your browser (no install)
 
-**▶ Live demo:** _enable GitHub Pages, then link it here_ — e.g. `https://ylolla.github.io/iexpense-compliance-demo/`
+**▶ Live demo:** _enable GitHub Pages, then link it here_ — e.g. `https://ylolla.github.io/corporate-card-compliance-automation/`
 
 Open the page, click **"load sample data"** (or drop your own two CSVs), and hit **Process files**.
 You'll see the classification counts, a rendered email preview per cardholder, and the
