@@ -240,8 +240,8 @@ document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{
 document.getElementById("loadSample").onclick=async()=>{
   const note=document.getElementById("loadNote");note.textContent="Loading sample data…";
   try{
-    const [a,b]=await Promise.all([fetch("sample_data/outstanding_sample.csv").then(r=>r.text()),
-                                   fetch("sample_data/iexpense_sample.csv").then(r=>r.text())]);
+    const [a,b]=await Promise.all([fetch("outstanding_sample.csv").then(r=>r.text()),
+                                   fetch("iexpense_sample.csv").then(r=>r.text())]);
     tawniaData=parseCSV(a);iexpData=parseCSV(b);
     document.getElementById("dropTawnia").classList.add("loaded");document.getElementById("dropTawnia").querySelector("small").textContent="✓ outstanding_sample.csv";
     document.getElementById("dropIexp").classList.add("loaded");document.getElementById("dropIexp").querySelector("small").textContent="✓ iexpense_sample.csv";

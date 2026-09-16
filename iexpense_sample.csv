@@ -1,0 +1,93 @@
+Trx Id,Report Header Id,Employee Name,Employee NetID,Expense Status,Merchant Name
+900001,3300001,"Rivera, Alex A",,Paid,DELTA AIR 006
+900002,3300002,"Chen, Jordan B",FAKE000002,Pending Your Resolution,GITHUB INC
+900003,3300003,"Chen, Jordan B",,Pending System Administrator Action,SQ *CORNER CAFE
+900004,3300004,"Okafor, Sam C",,Withdrawn,GITHUB INC
+900005,3300005,"Nguyen, Taylor D",D1003X,Pending System Administrator Action,DELTA AIR 006
+900006,3300006,"Patel, Morgan E",D1004X,Pending Manager Approval,STAPLES 00123
+900007,3300007,"Patel, Morgan E",D1004X,Ready for Payment,UBER TRIP
+900008,3300008,"Patel, Morgan E",FAKE000002,Ready for Payment,AMAZON MKTPLACE
+900009,3300009,"Patel, Morgan E",,Pending Your Resolution,MARRIOTT HOTELS
+900010,3300010,"Silva, Casey F",D1005X,Pending Manager Approval,ZOOM.US
+900011,3300011,"Silva, Casey F",D1005X,Pending System Administrator Action,AMAZON MKTPLACE
+900012,3300012,"Silva, Casey F",D1005X,Ready for Payment,APPLE STORE R042
+900013,3300013,"Kim, Riley G",D1006X,Pending Manager Approval,DELTA AIR 006
+900014,3300014,"Kim, Riley G",D1006X,Pending Your Resolution,DELTA AIR 006
+900015,3300015,"Harris, Jamie H",D1007X,,MARRIOTT HOTELS
+900016,3300016,"Novak, Drew I",D1008X,Withdrawn,UBER TRIP
+900017,3300017,"Novak, Drew I",D1008X,Pending Your Resolution,APPLE STORE R042
+900018,3300018,"Flores, Quinn J",D1009X,Withdrawn,STAPLES 00123
+900019,3300019,"Flores, Quinn J",D1009X,Paid,GITHUB INC
+900020,3300020,"Bauer, Avery K",D1010X,Pending Manager Approval,DELTA AIR 006
+900021,3300021,"Bauer, Avery K",D1010X,Ready for Payment,OFFICE DEPOT
+900022,3300022,"Mendez, Parker L",,Ready for Payment,DELTA AIR 006
+900023,3300023,"Mendez, Parker L",D1011X,Pending System Administrator Action,ZOOM.US
+900024,3300024,"Mendez, Parker L",FAKE000002,Rejected,DELTA AIR 006
+900025,3300025,"Osei, Reese M",D1012X,Pending System Administrator Action,APPLE STORE R042
+900026,3300026,"Osei, Reese M",D1012X,Withdrawn,STAPLES 00123
+900027,3300027,"Osei, Reese M",D1012X,Pending Your Resolution,SQ *CORNER CAFE
+900028,3300028,"Larsson, Skyler N",FAKE000002,Rejected,OFFICE DEPOT
+900029,3300029,"Yamamoto, Devon O",D1014X,,GITHUB INC
+900030,3300030,"Costa, Harper P",D1015X,Pending Manager Approval,AMAZON MKTPLACE
+900031,3300031,"Costa, Harper P",D1015X,Paid,MARRIOTT HOTELS
+900032,3300032,"Costa, Harper P",FAKE000002,Pending System Administrator Action,STAPLES 00123
+900033,3300033,"Ahmed, Rowan Q",,Paid,GITHUB INC
+900034,3300034,"Ahmed, Rowan Q",D1016X,Pending Your Resolution,UBER TRIP
+900035,3300035,"Ahmed, Rowan Q",D1016X,Withdrawn,STAPLES 00123
+900036,3300036,"Ahmed, Rowan Q",D1016X,Rejected,GITHUB INC
+900037,3300037,"Weber, Emerson R",D1017X,,SQ *CORNER CAFE
+900038,3300038,"Ivanov, Blake S",D1018X,Paid,DELTA AIR 006
+900039,3300039,"Reyes, Sage T",D1019X,Pending Your Resolution,AMAZON MKTPLACE
+900040,3300040,"Rivera, Alex U",D1020X,Rejected,STAPLES 00123
+900041,3300041,"Rivera, Alex U",D1020X,Rejected,UBER TRIP
+900042,3300042,"Rivera, Alex U",D1020X,Pending System Administrator Action,DELTA AIR 006
+900043,3300043,"Rivera, Alex U",D1020X,Withdrawn,UBER TRIP
+900044,3300044,"Chen, Jordan V",D1021X,Ready for Payment,ZOOM.US
+900045,3300045,"Chen, Jordan V",D1021X,,AMAZON MKTPLACE
+900046,3300046,"Chen, Jordan V",D1021X,Pending Your Resolution,MARRIOTT HOTELS
+900047,3300047,"Chen, Jordan V",,Withdrawn,APPLE STORE R042
+900048,3300048,"Okafor, Sam W",,Pending Manager Approval,DELTA AIR 006
+900049,3300049,"Okafor, Sam W",,Pending Manager Approval,MARRIOTT HOTELS
+900050,3300050,"Nguyen, Taylor X",D1023X,Paid,ZOOM.US
+900051,3300051,"Patel, Morgan Y",D1024X,,DELTA AIR 006
+900052,3300052,"Patel, Morgan Y",D1024X,Pending System Administrator Action,DELTA AIR 006
+900053,3300053,"Silva, Casey Z",,Pending System Administrator Action,MARRIOTT HOTELS
+900054,3300054,"Kim, Riley A",D1026X,Pending Manager Approval,AMAZON MKTPLACE
+900055,3300055,"Kim, Riley A",,Ready for Payment,AMAZON MKTPLACE
+900056,3300056,"Kim, Riley A",D1026X,Withdrawn,GITHUB INC
+900057,3300057,"Kim, Riley A",D1026X,Pending System Administrator Action,STAPLES 00123
+900058,3300058,"Harris, Jamie B",D1027X,Pending Your Resolution,ZOOM.US
+900059,3300059,"Harris, Jamie B",D1027X,Pending Your Resolution,SQ *CORNER CAFE
+900060,3300060,"Harris, Jamie B",D1027X,Pending Manager Approval,AMAZON MKTPLACE
+900061,3300061,"Novak, Drew C",D1028X,,ZOOM.US
+900062,3300062,"Novak, Drew C",D1028X,Pending System Administrator Action,SQ *CORNER CAFE
+900063,3300063,"Flores, Quinn D",D1029X,Pending System Administrator Action,UBER TRIP
+900064,3300064,"Flores, Quinn D",D1029X,,UBER TRIP
+900065,3300065,"Bauer, Avery E",D1030X,,STAPLES 00123
+900066,3300066,"Bauer, Avery E",D1030X,Withdrawn,SQ *CORNER CAFE
+900067,3300067,"Bauer, Avery E",D1030X,Pending Manager Approval,MARRIOTT HOTELS
+900068,3300068,"Bauer, Avery E",,,GITHUB INC
+900069,3300069,"Mendez, Parker F",,Pending Your Resolution,STAPLES 00123
+900070,3300070,"Mendez, Parker F",,Pending Your Resolution,DELTA AIR 006
+900071,3300071,"Osei, Reese G",FAKE000002,Withdrawn,APPLE STORE R042
+900072,3300072,"Osei, Reese G",D1032X,Pending Your Resolution,OFFICE DEPOT
+900073,3300073,"Osei, Reese G",D1032X,Ready for Payment,UBER TRIP
+900074,3300074,"Osei, Reese G",D1032X,Ready for Payment,DELTA AIR 006
+900075,3300075,"Larsson, Skyler H",D1033X,Paid,ZOOM.US
+900076,3300076,"Larsson, Skyler H",D1033X,Pending Your Resolution,SQ *CORNER CAFE
+900077,3300077,"Larsson, Skyler H",D1033X,Pending Your Resolution,AMAZON MKTPLACE
+900078,3300078,"Yamamoto, Devon I",D1034X,Rejected,MARRIOTT HOTELS
+900079,3300079,"Yamamoto, Devon I",D1034X,Withdrawn,MARRIOTT HOTELS
+900080,3300080,"Costa, Harper J",FAKE000002,Paid,APPLE STORE R042
+900081,3300081,"Costa, Harper J",D1035X,Pending Manager Approval,GITHUB INC
+900082,3300082,"Costa, Harper J",D1035X,Pending Your Resolution,STAPLES 00123
+900083,3300083,"Ahmed, Rowan K",FAKE000002,Pending Your Resolution,GITHUB INC
+900084,3300084,"Ahmed, Rowan K",FAKE000002,Paid,APPLE STORE R042
+900085,3300085,"Ahmed, Rowan K",D1036X,Ready for Payment,DELTA AIR 006
+900086,3300086,"Weber, Emerson L",D1037X,Paid,SQ *CORNER CAFE
+900087,3300087,"Weber, Emerson L",,Pending System Administrator Action,UBER TRIP
+900088,3300088,"Weber, Emerson L",,Ready for Payment,STAPLES 00123
+900089,3300089,"Ivanov, Blake M",D1038X,,GITHUB INC
+900090,3300090,"Ivanov, Blake M",D1038X,Pending Manager Approval,AMAZON MKTPLACE
+900091,3300091,"Ivanov, Blake M",,Rejected,GITHUB INC
+900092,3300092,"Reyes, Sage N",D1039X,Rejected,OFFICE DEPOT
