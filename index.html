@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>iExpense Compliance Automation — Live Demo</title>
+<style>
+  :root{--green:#00693E;--dgreen:#0A3D28;--moss:#97BC62;--sand:#F4F6F2;--ink:#1A2420;--soft:#5A6B62;--accent:#E8A94B;--line:#E0E6DF;--amber:#B7791F;--red:#B23B3B}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Calibri,"Segoe UI",Arial,sans-serif;color:var(--ink);background:var(--sand);line-height:1.5}
+  header{background:var(--dgreen);color:#fff;padding:26px 40px}
+  header h1{font-family:Cambria,Georgia,serif;font-size:28px}
+  header p{color:var(--moss);font-size:15px;margin-top:4px}
+  .demo-badge{display:inline-block;background:var(--accent);color:#3a2b06;font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px;margin-top:10px}
+  main{max-width:1100px;margin:0 auto;padding:32px 24px 80px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px 28px;margin-bottom:24px}
+  h2{font-family:Cambria,Georgia,serif;color:var(--green);font-size:22px;margin-bottom:6px}
+  .lead{color:var(--soft);font-size:15px;margin-bottom:18px}
+  .drops{display:flex;gap:18px;flex-wrap:wrap}
+  .drop{flex:1;min-width:280px;border:2px dashed var(--moss);border-radius:12px;padding:26px;text-align:center;cursor:pointer;transition:all .2s;background:#fbfdfb}
+  .drop:hover,.drop.over{background:#eef5ee;border-color:var(--green)}
+  .drop b{color:var(--green);display:block;margin-bottom:4px;font-size:16px}
+  .drop small{color:var(--soft)}
+  .drop.loaded{border-style:solid;border-color:var(--green);background:#eef5ee}
+  .btnrow{margin-top:20px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  button{border:none;border-radius:9px;padding:11px 20px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit}
+  .btn-primary{background:var(--green);color:#fff}.btn-primary:disabled{background:#b9cdc2;cursor:not-allowed}
+  .btn-ghost{background:#eef2ef;color:var(--ink)}
+  .sample{font-size:14px;color:var(--green);text-decoration:underline;cursor:pointer;background:none;padding:0;font-weight:600}
+  .stats{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+  .stat{flex:1;min-width:150px;border-radius:12px;padding:18px 20px;color:#fff}
+  .stat.send{background:var(--green)}.stat.excl{background:#6b7d72}.stat.rev{background:var(--amber)}
+  .stat b{font-family:Cambria,serif;font-size:34px;display:block;line-height:1}
+  .stat span{font-size:13px;opacity:.92}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+  th{background:var(--green);color:#fff;text-align:left;padding:8px 10px;font-size:12px}
+  td{border-bottom:1px solid var(--line);padding:7px 10px}
+  tr:hover td{background:#f7faf7}
+  .reason{color:var(--amber);font-weight:600}
+  .tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+  .tab{padding:8px 16px;border-radius:99px;background:#eef2ef;cursor:pointer;font-size:14px;font-weight:600}
+  .tab.on{background:var(--green);color:#fff}
+  .maillist{max-height:180px;overflow:auto;border:1px solid var(--line);border-radius:10px}
+  .mailitem{padding:10px 14px;border-bottom:1px solid var(--line);cursor:pointer;display:flex;justify-content:space-between}
+  .mailitem:hover{background:#f7faf7}.mailitem.sel{background:#eef5ee}
+  .mailitem b{color:var(--green)}
+  .emailbox{border:1px solid var(--line);border-radius:10px;padding:22px;margin-top:14px;background:#fff}
+  .meta{font-size:12px;color:var(--soft);border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:14px}
+  .hidden{display:none}
+  .note{font-size:13px;color:var(--soft);margin-top:8px}
+  footer{text-align:center;color:var(--soft);font-size:12px;padding:24px}
+  .mockchip{background:#fdeaea;color:var(--red);font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px}
+</style>
+</head>
+<body>
+<header>
+  <h1>iExpense Compliance Automation Suite</h1>
+  <p>Reconciles corporate-card data, classifies every transaction, and drafts the right notices — automatically.</p>
+  <span class="demo-badge">BROWSER DEMO · runs entirely on your device · no data leaves the page</span>
+</header>
+
+<main>
+  <div class="card">
+    <h2>1 · Drop the two monthly files</h2>
+    <p class="lead">An "outstanding transactions" file and an "iExpense" export — both CSV. No real data: use the samples below or your own scrubbed test files.</p>
+    <div class="drops">
+      <div class="drop" id="dropTawnia">
+        <b>Outstanding CC file</b>
+        <small>drag a CSV here, or click</small>
+        <input type="file" accept=".csv" class="hidden" id="fileTawnia">
+      </div>
+      <div class="drop" id="dropIexp">
+        <b>iExpense export</b>
+        <small>drag a CSV here, or click</small>
+        <input type="file" accept=".csv" class="hidden" id="fileIexp">
+      </div>
+    </div>
+    <div class="btnrow">
+      <button class="btn-primary" id="runBtn" disabled>Process files</button>
+      <button class="sample" id="loadSample">or load sample data</button>
+    </div>
+    <div class="note" id="loadNote"></div>
+  </div>
+
+  <div class="card hidden" id="results">
+    <h2>2 · Classification</h2>
+    <p class="lead">Newer iExpense status wins. Only two things go to review: pending system-admin action, or no NetID on file (no address to send to).</p>
+    <div class="stats">
+      <div class="stat send"><b id="cSend">0</b><span>Will be emailed</span></div>
+      <div class="stat excl"><b id="cExcl">0</b><span>Excluded (already resolved)</span></div>
+      <div class="stat rev"><b id="cRev">0</b><span>Flagged for review</span></div>
+    </div>
+    <div class="tabs">
+      <div class="tab on" data-tab="email">Email preview</div>
+      <div class="tab" data-tab="flagged">Flagged for review</div>
+    </div>
+
+    <div id="tab-email">
+      <div class="maillist" id="maillist"></div>
+      <div class="emailbox" id="emailbox"><p class="note">Select a recipient above to preview their notice.</p></div>
+    </div>
+
+    <div id="tab-flagged" class="hidden">
+      <table><thead><tr><th>Cardholder</th><th>Trx Id</th><th>Bucket</th><th>Reason</th></tr></thead>
+      <tbody id="flaggedBody"></tbody></table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>How it works <span class="mockchip">SENDING DISABLED IN DEMO</span></h2>
+    <p class="lead">This browser demo mirrors the core logic of the full tool. The real version (a Python/Flask app) also sends the notices via Outlook or Apple Mail, writes a timestamped audit log every run, and copies fiscal officers &amp; managers. Sending is intentionally removed here so anyone can run it safely.</p>
+  </div>
+</main>
+
+<footer>Built by Yeshwanth Lolla · Sr. Compliance and Data Analyst · Financial Systems &amp; Services · Demo data is fictional.</footer>
+
+<script>
+// ---------- core logic (mirrors the Python tool) ----------
+const EXCLUDABLE = new Set(["Paid","Pending Payables Approval","Ready for Payment","Deleted"]);
+const REVIEW_STATUS = "Pending System Administrator Action";
+const BUCKET_ORDER = {"< 30 Days":1,"30 - 60 Days":2,"60 - 90 Days":3,"90 - 120 Days":4,"120 - 150 Days":5,"> 150 Days":6};
+const UNDER_60 = new Set(["< 30 Days","30 - 60 Days"]);
+const SUBJECT_BY_BUCKET = {
+  "< 30 Days":"Outstanding Corporate Card Transactions",
+  "30 - 60 Days":"Outstanding Corporate Card Transactions - Action Required",
+  "60 - 90 Days":"Outstanding Corporate Card Transactions over 60 days - Action Required",
+  "90 - 120 Days":"Outstanding Corporate Card Transactions over 90 days - Action Required",
+  "120 - 150 Days":"Outstanding Corporate Card Transactions over 120 days - Action Required",
+  "> 150 Days":"Outstanding Corporate Card Transactions over 150 days - Action Required"};
+const INTRO_BY_BUCKET = {
+  "< 30 Days":"The below corporate card transactions are outstanding and need to be settled in iExpense at your earliest convenience.",
+  "30 - 60 Days":"The corporate card transactions listed below remain outstanding, please submit and settle these transactions in iExpense at your earliest convenience.",
+  "60 - 90 Days":"Some or all of the corporate card transactions listed below have been outstanding for more than 60 days. Please submit and reconcile these expenses in iExpense as soon as possible to avoid potential suspension of your corporate card.",
+  "90 - 120 Days":"Our records indicate that the corporate card transaction(s) listed below remain outstanding. Because some or all of these transactions are more than 90 days old, your card has been suspended effective immediately and will remain suspended until the transactions are fully settled in the iExpense system.",
+  "120 - 150 Days":"Our records indicate that the corporate card transaction(s) listed below remain outstanding. Because some or all of these transactions are more than 120 days old, your card has been suspended effective immediately and will remain suspended until the transactions are fully settled in the iExpense system.",
+  "> 150 Days":"Our records indicate that the corporate card transaction(s) listed below remain outstanding. Because some or all of these transactions are more than 150 days old, your card has been suspended effective immediately and will remain suspended until the transactions are fully settled in the iExpense system."};
+const SIGNATURE = "Thank you,\nFinance Operations\n\nFinance Operations\nDirector, Finance Operations";
+const TABLE_COLUMNS = ["Report Header Id","Card Holder Name","Transaction Date","Billed Amount","Billed Date","Expense Status","Merchant Name"];
+
+function parseCSV(text){
+  const lines = text.trim().split(/\r?\n/);
+  const heads = splitLine(lines[0]);
+  return lines.slice(1).map(l=>{const c=splitLine(l);const o={};heads.forEach((h,i)=>o[h.trim()]=(c[i]||"").trim());return o;});
+}
+function splitLine(l){ // minimal CSV split with quote support
+  const out=[];let cur="",q=false;
+  for(let i=0;i<l.length;i++){const ch=l[i];
+    if(ch==='"'){q=!q;} else if(ch===','&&!q){out.push(cur);cur="";} else cur+=ch;}
+  out.push(cur);return out;}
+function realNetid(v){return v && !/\s/.test(v) && v.indexOf("@")<0 && v.toUpperCase().indexOf("FAKE")<0 && !["","nan","none"].includes(v.toLowerCase());}
+function norm(s){s=(s||"").trim();return ["","0","nan","none"].includes(s.toLowerCase())?null:s;}
+
+function process(tawnia, iexp){
+  // scrub + fill netids within iexp by exact name (one netid only)
+  const nameNet={};
+  iexp.forEach(r=>{let n=(r["Employee NetID"]||"").trim();if(n.toUpperCase().includes("FAKE"))n="";if(realNetid(n)){(nameNet[r["Employee Name"]]=nameNet[r["Employee Name"]]||new Set()).add(n);}});
+  const uniq={};for(const nm in nameNet){if(nameNet[nm].size===1)uniq[nm]=[...nameNet[nm]][0];}
+  const lookup={};
+  iexp.forEach(r=>{let n=(r["Employee NetID"]||"").trim();if(n.toUpperCase().includes("FAKE"))n="";if(!realNetid(n))n=uniq[r["Employee Name"]]||"";
+    lookup[(r["Trx Id"]||"").trim()]={netid:n,status:r["Expense Status"]||""};});
+
+  const rows = tawnia.filter(r=>(r["Card Holder Name"]||"").trim()!=="").map(r=>{
+    const tid=(r["Trx Id"]||"").trim();
+    const hit=lookup[tid]||{};
+    const netid = realNetid((hit.netid||"").trim()) ? hit.netid.trim() : (uniq[r["Card Holder Name"]]||"");
+    const t=norm(r["Expense Status"]), x=norm(hit.status);
+    const eff = x!==null?x:t;
+    let disp,fs;
+    if(eff===REVIEW_STATUS){disp="REVIEW";fs=REVIEW_STATUS;}
+    else if(EXCLUDABLE.has(eff)){disp="EXCLUDE";fs=eff;}
+    else{fs=eff||"";if(!realNetid(netid)){disp="REVIEW";fs="No email found (no NetID)";}else disp="SEND";}
+    return Object.assign({},r,{_netid:netid,_disp:disp,_fs:fs,_bucket:(r["Bucket"]||"").trim()});
+  });
+  return rows;
+}
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function buildEmail(name, items){
+  // worst bucket
+  let worst=items.reduce((a,b)=>(BUCKET_ORDER[b._bucket]||0)>(BUCKET_ORDER[a._bucket]||0)?b:a);
+  const bucket=worst._bucket;
+  const fc=UNDER_60.has(bucket);
+  const netid=items[0]._netid;
+  const cc=[]; if(!fc) cc.push("fiscal.officer@example.edu"); cc.push("manager@example.edu"); cc.push("process.owner@example.edu");
+  const cols=TABLE_COLUMNS;
+  let th=cols.map(c=>`<th>${esc(c)}</th>`).join("");
+  let tr=items.map(r=>"<tr>"+cols.map(c=>`<td>${esc(r[c]||"")}</td>`).join("")+"</tr>").join("");
+  const intro=(INTRO_BY_BUCKET[bucket]||INTRO_BY_BUCKET["< 30 Days"]);
+  return `<div class="meta"><b>FROM</b> ${fc?"finance.center@example.edu":"process.owner@example.edu"}<br>
+    <b>TO</b> ${esc(netid)}@example.edu<br><b>CC</b> ${cc.join(", ")}<br>
+    <b>SUBJECT</b> ${esc(SUBJECT_BY_BUCKET[bucket]||"")}</div>
+    <p>Hello,</p><p style="margin:10px 0">${esc(intro)}</p>
+    <table><thead><tr>${th}</tr></thead><tbody>${tr}</tbody></table>
+    <p style="margin-top:12px;white-space:pre-line;color:#333">${esc(SIGNATURE)}</p>`;
+}
+
+// ---------- UI wiring ----------
+let tawniaData=null, iexpData=null, RESULT=null, PEOPLE=[];
+function wireDrop(dropId,inputId,setter){
+  const d=document.getElementById(dropId),inp=document.getElementById(inputId);
+  d.onclick=()=>inp.click();
+  inp.onchange=e=>{if(e.target.files[0])read(e.target.files[0]);};
+  ["dragover","dragenter"].forEach(ev=>d.addEventListener(ev,e=>{e.preventDefault();d.classList.add("over");}));
+  ["dragleave","drop"].forEach(ev=>d.addEventListener(ev,e=>{e.preventDefault();d.classList.remove("over");}));
+  d.addEventListener("drop",e=>{if(e.dataTransfer.files[0])read(e.dataTransfer.files[0]);});
+  function read(f){const r=new FileReader();r.onload=()=>{setter(parseCSV(r.result));d.classList.add("loaded");d.querySelector("small").textContent="✓ "+f.name;checkReady();};r.readAsText(f);}
+}
+wireDrop("dropTawnia","fileTawnia",d=>tawniaData=d);
+wireDrop("dropIexp","fileIexp",d=>iexpData=d);
+function checkReady(){document.getElementById("runBtn").disabled=!(tawniaData&&iexpData);}
+
+document.getElementById("runBtn").onclick=()=>{
+  RESULT=process(tawniaData,iexpData);
+  const send=RESULT.filter(r=>r._disp==="SEND"),excl=RESULT.filter(r=>r._disp==="EXCLUDE"),rev=RESULT.filter(r=>r._disp==="REVIEW");
+  document.getElementById("cSend").textContent=new Set(send.map(r=>r["Card Holder Name"])).size;
+  document.getElementById("cExcl").textContent=excl.length;
+  document.getElementById("cRev").textContent=rev.length;
+  // group send by person
+  const g={};send.forEach(r=>{(g[r["Card Holder Name"]]=g[r["Card Holder Name"]]||[]).push(r);});
+  PEOPLE=Object.entries(g);
+  document.getElementById("maillist").innerHTML=PEOPLE.map((p,i)=>`<div class="mailitem${i===0?" sel":""}" onclick="showMail(${i},this)"><b>${esc(p[0])}</b><span>${p[1].length} item(s)</span></div>`).join("")||"<div class='mailitem'>No one to email in this data.</div>";
+  document.getElementById("flaggedBody").innerHTML=rev.map(r=>`<tr><td>${esc(r["Card Holder Name"])}</td><td>${esc(r["Trx Id"])}</td><td>${esc(r._bucket)}</td><td class="reason">${esc(r._fs)}</td></tr>`).join("")||"<tr><td colspan=4>Nothing flagged.</td></tr>";
+  document.getElementById("results").classList.remove("hidden");
+  if(PEOPLE.length)showMail(0);
+  document.getElementById("results").scrollIntoView({behavior:"smooth"});
+};
+function showMail(i,el){
+  document.querySelectorAll(".mailitem").forEach(m=>m.classList.remove("sel"));
+  if(el)el.classList.add("sel");
+  document.getElementById("emailbox").innerHTML=buildEmail(PEOPLE[i][0],PEOPLE[i][1]);
+}
+document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{
+  document.querySelectorAll(".tab").forEach(x=>x.classList.remove("on"));t.classList.add("on");
+  const which=t.dataset.tab;
+  document.getElementById("tab-email").classList.toggle("hidden",which!=="email");
+  document.getElementById("tab-flagged").classList.toggle("hidden",which!=="flagged");
+});
+
+// sample data (fetch bundled CSVs)
+document.getElementById("loadSample").onclick=async()=>{
+  const note=document.getElementById("loadNote");note.textContent="Loading sample data…";
+  try{
+    const [a,b]=await Promise.all([fetch("sample_data/outstanding_sample.csv").then(r=>r.text()),
+                                   fetch("sample_data/iexpense_sample.csv").then(r=>r.text())]);
+    tawniaData=parseCSV(a);iexpData=parseCSV(b);
+    document.getElementById("dropTawnia").classList.add("loaded");document.getElementById("dropTawnia").querySelector("small").textContent="✓ outstanding_sample.csv";
+    document.getElementById("dropIexp").classList.add("loaded");document.getElementById("dropIexp").querySelector("small").textContent="✓ iexpense_sample.csv";
+    checkReady();note.textContent="Sample data loaded — click Process files.";
+  }catch(e){note.textContent="Could not load sample data (are you running via GitHub Pages / a web server?).";}
+};
+</script>
+</body>
+</html>
